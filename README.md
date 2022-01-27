@@ -12,11 +12,11 @@
   * Szymon Koński
   * Piotr Krasowski
 - This project is made for educational purposes.
-- Our goal is to implement a simple car-renting service with the .Net framework. 
+- Our goal is to implement a simple car-renting service with the .NET 5 and Microsoft Azure cloud services. 
 
 ## Technologies Used
 - Backend: ASP.NET
-- Frontend: Angular.js
+- Frontend: Angular
 - Hosting: Azure
 - Database: MSSQL
 
