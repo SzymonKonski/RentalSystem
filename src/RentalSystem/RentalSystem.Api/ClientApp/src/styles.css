@@ -1,0 +1,69 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.mat-radio-label-content {
+  font-size: 1rem;
+}
+
+.mat-calendar-body-selected {
+  background-color: #ed9e0c;
+  color: #000;
+}
+
+.mat-calendar-body-disabled > .mat-calendar-body-selected {
+  background-color: rgba(237, 158, 12, .4);
+}
+
+
+.custom-slider .ngx-slider .ngx-slider-pointer {
+  background-color: #ed9e0c;
+  outline-color: #b57c09;
+}
+
+.custom-slider .ngx-slider .ngx-slider-selection {
+  background: #ed9e0c;
+}
+
+.custom-slider .ngx-slider .ngx-slider-tick.ngx-slider-selected {
+  background: #ed9e0c;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #ed9e0c;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #ed9e0c;
+}
+
+.mat-checkbox-label {
+  font-size: 1rem;
+}
+
+
+.mat-checkbox-frame {
+  border-color: #ed9e0c;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #ed9e0c;
+}
+
+.custom-slider .ngx-slider .ngx-slider-pointer.ngx-slider-active:after {
+  background-color: #b57c09;
+}

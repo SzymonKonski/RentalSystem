@@ -1,0 +1,90 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-2022'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  
+name: '1.1.0.$(Rev:r)'
+
+steps:
+- task: NuGetToolInstaller@1
+
+#- task: NuGetCommand@2
+#  inputs:
+#    restoreSolution: '$(solution)'
+
+- task: VersionDotNetCoreAssemblies@2
+  displayName: Version the assemblies
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    VersionNumber: '$(Build.BuildNumber)'
+    InjectVersion: true
+    OutputVersion: 'OutputedVersion'
+
+- task: Bash@3
+  displayName: Set angular development environment
+  inputs:
+    targetType: 'inline'
+    script: |
+      mv -f environment.prod.ts environment.ts
+    workingDirectory: 'src\RentalSystem\RentalSystem.Api\ClientApp\src\environments'
+
+#- task: VersionAngularFile@2
+#  displayName: Version the angular project
+#  inputs:
+#    Path: '$(Build.SourcesDirectory)'
+#    VersionNumber: '$(Build.BuildNumber)'
+#    InjectVersion: true
+#    FilenamePattern: environment.prod.ts
+#    OutputVersion: 'OutputedVersion'
+    
+    
+- task: DotNetCoreCLI@2
+  displayName: Build Domain
+  inputs:
+    command: 'build'
+    projects: src/RentalSystem/RentalSystem.Domain/RentalSystem.Domain.csproj
+    arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+    
+- task: DotNetCoreCLI@2
+  displayName: Build Infrastructure
+  inputs:
+    command: 'build'
+    projects: src/RentalSystem/Rental.Infrastructure/Rental.Infrastructure.csproj
+    arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+- task: DotNetCoreCLI@2
+  displayName: Build Logging
+  inputs:
+    command: 'build'
+    projects: src/RentalSystem/RentalSystem.Logging/RentalSystem.Logging.csproj
+    arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+
+- task: DotNetCoreCLI@2
+  displayName: Build App
+  inputs:
+    command: 'build'
+    projects: src/RentalSystem/RentalSystem.Api/RentalSystem.Api.csproj
+    arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration production
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration production --output $(Build.ArtifactStagingDirectory)/App'
+    zipAfterPublish: True
+
+    
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/App' 
+    artifactName: 'RentalSystem'

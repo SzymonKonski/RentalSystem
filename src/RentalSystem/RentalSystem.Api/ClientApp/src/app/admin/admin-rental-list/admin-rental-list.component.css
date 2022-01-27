@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #b39d10;
+  background: #f5ed16;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+}

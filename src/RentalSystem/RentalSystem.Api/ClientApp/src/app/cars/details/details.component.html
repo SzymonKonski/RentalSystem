@@ -1,0 +1,27 @@
+<div class="container">
+  <br />
+  <h3>Car Details</h3>
+  <br />
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <h4>{{ car.model }}</h4>
+        </div>
+        <div class="col text-right">
+          <a href="#" routerLink="/cars" class="btn btn-secondary btn-sm">Back To Cars List</a>
+        </div>
+      </div>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>Brand:</b> {{ car.brand }}</li>
+      <li class="list-group-item"><b>Car model:</b> {{ car.model }}</li>
+      <li class="list-group-item"><b>Horse power:</b> {{ car.horsepower }}</li>
+      <li class="list-group-item"><b>Year of production:</b> {{ car.yearOfProduction }}</li>
+      <li class="list-group-item"><b>Description:</b> {{ car.description }}</li>
+      <li class="list-group-item"><b>Base price:</b> {{ car.basePrice }}</li>
+      <li class="list-group-item"><b>Dealer name:</b> {{ car.dealerName }}</li>
+    </ul>
+    <a href="#" [routerLink]="['/rentme/', car.id, 'rentform']" class="btn btn-info btn-sm cell-buttons">Rent</a>
+  </div>
+</div>

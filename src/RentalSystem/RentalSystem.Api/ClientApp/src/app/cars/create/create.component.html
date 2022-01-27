@@ -1,0 +1,73 @@
+<div class="container">
+  <br />
+  <div class="row">
+    <div class="col">
+      <h3>Create Car</h3>
+    </div>
+    <div class="col text-right">
+      <a href="#" routerLink="/cars" class="btn btn-secondary btn-sm">Back To Cars List</a>
+    </div>
+  </div>
+  <br />
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)">
+
+    <div class="form-group">
+      <label for="brand">Brand:</label>
+      <input formControlName="brand"
+             id="brand"
+             type="text"
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="model">Model:</label>
+      <input formControlName="model"
+             id="model"
+             type="text"
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="horsepower">Horse power:</label>
+      <input formControlName="horsepower"
+             id="horsepower"
+             type="number"
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="yearOfProduction">Year of production:</label>
+      <input formControlName="yearOfProduction"
+             id="yearOfProduction"
+             type="text"
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input formControlName="description"
+             id="description"
+             type="text"
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="basePrice">Base price:</label>
+      <input formControlName="basePrice"
+             id="basePrice"
+             type="number"
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="dealers">Dealer:</label>
+      <br />
+      <select formControlName="dealer" name="dealers" id="dealers" [(ngModel)]="selectedDealer">
+        <option *ngFor="let dealer of dealers" [value]="dealer">{{dealer.name}}</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Create</button>
+  </form>
+  
+</div>

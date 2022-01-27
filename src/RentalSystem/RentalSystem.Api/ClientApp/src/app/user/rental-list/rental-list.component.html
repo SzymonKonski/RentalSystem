@@ -1,0 +1,75 @@
+<div class="container">
+
+  <p>Current rentals</p>
+  <table mat-table [dataSource]="rentals" class="mat-elevation-z8">
+    <ng-container matColumnDef="model">
+      <th class="header" mat-header-cell *matHeaderCellDef> Model </th>
+      <td mat-cell *matCellDef="let element">{{element.car.model}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="brand">
+      <th class="header" mat-header-cell *matHeaderCellDef> Brand </th>
+      <td mat-cell *matCellDef="let element">{{element.car.brand}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="rentFrom">
+      <th class="header" mat-header-cell *matHeaderCellDef> From </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.rentFrom |  date:'longDate'}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rentTo">
+      <th class="header" mat-header-cell *matHeaderCellDef> To</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.rentTo |  date:'longDate'}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+      <th class="header" mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="buttons-container">
+          <a href="#" [routerLink]="['/user/', element.id, 'return']" class="btn btn-info btn-sm cell-buttons">Return</a>
+        </div>
+      </td>
+    </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+  </table>
+
+  <br />
+  <br />
+
+  <p>Old rentals</p>
+  <table mat-table [dataSource]="rentalsOld" class="mat-elevation-z8">
+    <ng-container matColumnDef="model">
+      <th class="header" mat-header-cell *matHeaderCellDef> Model </th>
+      <td mat-cell *matCellDef="let element">{{element.car.model}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="brand">
+      <th class="header" mat-header-cell *matHeaderCellDef> Brand </th>
+      <td mat-cell *matCellDef="let element">{{element.car.brand}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="rentFrom">
+      <th class="header" mat-header-cell *matHeaderCellDef> From </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.rentFrom | date:'longDate'}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rentTo">
+      <th class="header" mat-header-cell *matHeaderCellDef> To</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.rentTo | date:'longDate'}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsOld"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsOld;"></tr>
+  </table>
+</div>

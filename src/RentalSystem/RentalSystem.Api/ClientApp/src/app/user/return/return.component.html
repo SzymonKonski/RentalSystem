@@ -1,0 +1,50 @@
+<p>Image</p>
+<div class="row" style="margin-bottom:15px;">
+  <div class="col-md-3">
+    <input accept=".jpeg,.png,.jpg" type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+    <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+  </div>
+  <div class="col-md-4">
+    <span *ngIf="valid">
+      {{fileName}}
+    </span>
+    <span class="upload" *ngIf="progress > 0">
+      {{progress}}%
+    </span>
+    <span class="upload" *ngIf="message && valid">
+      {{message}}
+    </span>
+    <span class="error" *ngIf="message && !valid">
+      {{message}}
+    </span>
+  </div>
+</div>
+<p>PDF</p>
+<div class="row" style="margin-bottom:15px;">
+  <div class="col-md-3">
+    <input accept=".pdf" type="file" #file2 placeholder="Choose file" (change)="uploadFile2(file2.files)" style="display:none;">
+    <button type="button" class="btn btn-success" (click)="file2.click()">Upload File</button>
+  </div>
+  <div class="col-md-4">
+    <span *ngIf="valid2">
+      {{fileName2}}
+    </span>
+    <span class="upload" *ngIf="progress2 > 0">
+      {{progress2}}%
+    </span>
+    <span class="upload" *ngIf="message2 && valid2">
+      {{message2}}
+    </span>
+    <span class="error" *ngIf="message2 && !valid2">
+      {{message2}}
+    </span>
+  </div>
+</div>
+<div class="row" style="margin-bottom:15px;">
+ <div class="price">If you return now, your due amont will be: {{price}}</div>
+</div>
+<div class="row" style="margin-bottom:15px;">
+  <a href="#" [routerLink]="['/']">
+    <button style="margin-left: 15px;" class="btn btn-primary" type="submit" [disabled]="!valid || !valid2" (click)="sendFiles(file, file2)">Return</button>
+  </a>
+</div>

@@ -1,0 +1,66 @@
+trigger:
+- main
+
+
+pool:
+  vmImage: 'windows-2022'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  
+name: '1.0.0.$(Rev:r)'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  displayName: Restore solution
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VersionDotNetCoreAssemblies@2
+  displayName: Version the assemblies
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    VersionNumber: '$(Build.BuildNumber)'
+    InjectVersion: true
+    OutputVersion: 'OutputedVersion'
+    
+- task: DotNetCoreCLI@2
+  displayName: Build Core
+  inputs:
+    command: 'build'
+    projects: src/RentalSystem/RentalSystem.MailSender.Core/RentalSystem.MailSender.Core.csproj
+    arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+- task: DotNetCoreCLI@2
+  displayName: Build Infrastructure
+  inputs:
+    command: 'build'
+    projects: src/RentalSystem/RentalSystem.MailSender.Infrastructure/RentalSystem.MailSender.Infrastructure.csproj
+    arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+- task: DotNetCoreCLI@2
+  displayName: Build Function
+  inputs:
+    command: 'build'
+    projects: src/RentalSystem/RentalSystem.MailSender.FuncApp/RentalSystem.MailSender.FuncApp.csproj
+    arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/MailSender'
+    zipAfterPublish: True
+
+    
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/MailSender' 
+    artifactName: 'MailSender'

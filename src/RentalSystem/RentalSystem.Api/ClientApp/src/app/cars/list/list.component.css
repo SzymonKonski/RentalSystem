@@ -1,0 +1,112 @@
+.elementLeft {
+  margin-right: 10px;
+  width: 15%;
+  height: 100vh;
+  background: #f5ed16;
+  display: inline-block;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  margin-top: 57px;
+  font-size: 1.5rem;
+  border-right-style: solid;
+  border-width: 7px;
+  border-color: #c9c312;
+}
+
+.elementRight {
+  display: inline-block;
+  width: 80%;
+  height: 100px;
+  margin-left: 30px;
+}
+
+.element {
+  margin: 10px;
+}
+
+table {
+  width: 100%;
+}
+
+.view {
+    width:auto;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width:auto;
+}
+
+.cell-buttons{
+    width: 30%;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #b39d10;
+  background: #f5ed16;
+}
+
+
+* {
+  margin: 10px;
+}
+
+#slider {
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.ngx-slider .ngx-slider-pointer {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  top: -14px;
+  background-color: #FFF;
+  z-index: 3;
+  border-radius: 16px;
+}
+
+.custom-slider .ngx-slider .ngx-slider-pointer {
+  width: 8px;
+  height: 16px;
+  top: auto; /* to remove the default positioning */
+  bottom: 0;
+  background-color: #333;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.brand-radio-button {
+  padding-left: 8px;
+  width: 100%;
+  margin-top: -2px;
+}
+
+.mat-radio-label-content {
+  font-size: 1rem;
+}
+
+
+.text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.filterButton {
+  color: #b57c09;
+  background-color: #ed9e0c;
+  width: 80%;
+  font-weight: bold;
+  font-size: 1.25rem;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.mat-raised-button {
+  width: 100%;
+}
