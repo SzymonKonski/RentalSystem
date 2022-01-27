@@ -73,4 +73,4 @@ In the Cars Rental System, it is used to store car images and pdf files that are
 
 ## Contact
 
-By Teams and/or PW e-mail
+szymon.konski@outlook.com
