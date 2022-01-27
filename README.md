@@ -1,10 +1,10 @@
 ﻿## Table of Contents
 * [General Information](#general-information)
 * [Technologies Used](#technologies-used)
+* [Use cases](#use-cases-are-following)
 * [Screenshots](#screenshots)
 * [Usage](#usage)
 * [Contact](#contact)
-
 
 ## General Information
 - Authors:
